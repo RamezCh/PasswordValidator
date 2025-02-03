@@ -74,28 +74,46 @@ public class Main {
         String specialCharacters = "!@#$%^&*()_][;.,=-";
         String letters = "qwertyuiopasdfghjklzxcvbnm";
         String numbers = "1234567890";
-        String password = "";
-        int passwordLength = (int)(Math.random() * 30 + 8 );
-        for(int i = 0; i < passwordLength; i++) {
-            int randomLetter = (int)(Math.random() * letters.length());
-            boolean containNumber = Math.random() >= 0.5;
-            boolean containSpecialCharacter = Math.random() >= 0.5;
-            boolean isCapitalLetter = Math.random() >= 0.5;
-            if(isCapitalLetter) {
-                password += letters.toUpperCase().charAt(randomLetter);
-            } else {
-                password += letters.charAt(randomLetter);
-            }
-            if(containNumber) {
-                int randomNumber = (int)(Math.random() * numbers.length());
-                password += numbers.charAt(randomNumber);
-            }
-            if(containSpecialCharacter) {
-                int randomSpecialCharacters = (int) (Math.random() * specialCharacters.length());
-                password += specialCharacters.charAt(randomSpecialCharacters);
-            }
 
+        int passwordLength = (int)(Math.random() * 92 + 8);
+
+        char[] password = new char[passwordLength];
+
+        int specialCharIndex = (int) (Math.random() * passwordLength);
+        int numberIndex = (int) (Math.random() * passwordLength);
+        int uppercaseIndex = (int) (Math.random() * passwordLength);
+        int lowercaseIndex = (int) (Math.random() * passwordLength);
+
+        while (specialCharIndex == numberIndex || specialCharIndex == uppercaseIndex || specialCharIndex == lowercaseIndex ||
+                numberIndex == uppercaseIndex || numberIndex == lowercaseIndex || uppercaseIndex == lowercaseIndex) {
+            specialCharIndex = (int) (Math.random() * passwordLength);
+            numberIndex = (int) (Math.random() * passwordLength);
+            uppercaseIndex = (int) (Math.random() * passwordLength);
+            lowercaseIndex = (int) (Math.random() * passwordLength);
         }
-        return password;
+
+        password[specialCharIndex] = specialCharacters.charAt((int) (Math.random() * specialCharacters.length()));
+        password[numberIndex] = numbers.charAt((int) (Math.random() * numbers.length()));
+        password[uppercaseIndex] = letters.toUpperCase().charAt((int) (Math.random() * letters.length()));
+        password[lowercaseIndex] = letters.charAt((int) (Math.random() * letters.length()));
+
+        for (int i = 0; i < passwordLength; i++) {
+            if (password[i] == 0) {
+                int randomType = (int) (Math.random() * 3);
+                if (randomType == 0) {
+                    password[i] = numbers.charAt((int) (Math.random() * numbers.length()));
+                } else if (randomType == 1) {
+                    if (Math.random() >= 0.5) {
+                        password[i] = letters.toUpperCase().charAt((int) (Math.random() * letters.length()));
+                    } else {
+                        password[i] = letters.charAt((int) (Math.random() * letters.length()));
+                    }
+                } else {
+                    password[i] = specialCharacters.charAt((int) (Math.random() * specialCharacters.length()));
+                }
+            }
+        }
+
+        return new String(password);
     }
 }
