@@ -43,8 +43,30 @@ public class Main {
         return false;
     }
 
+    public static boolean hasSpecialCharacters(String password) {
+        // * means zero or more occurrences
+        // + means one or more occurrences
+        return password != null && !password.matches("[a-zA-Z0-9]+");
+    }
+
 
     public static boolean isPasswordCommon(String password) {
+        if(!isValidLength(password)) {
+            return true;
+        }
+
+        if(!hasDigit(password)) {
+            return true;
+        }
+
+        if(!hasUppercaseAndLowercase(password)) {
+            return true;
+        }
+
+        if(!hasSpecialCharacters(password)) {
+            return true;
+        }
+
         return false;
     }
 }

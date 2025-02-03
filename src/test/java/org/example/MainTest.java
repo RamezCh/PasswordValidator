@@ -84,6 +84,23 @@ class MainTest {
     }
 
     @Test
-    void isPasswordCommon() {
+    void isPasswordCommon_whenGivenPassword1_returnTrue() {
+        String password = "Password1";
+        boolean actual = Main.isPasswordCommon(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isPasswordCommon_whenGivenAa345678_returnTrue() {
+        String password = "Aa345678";
+        boolean actual = Main.isPasswordCommon(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isPasswordCommon_whenGivenMixPasswordWithOneSpecialCharacter_returnFalse() {
+        String password = "!Aa345678";
+        boolean actual = Main.isPasswordCommon(password);
+        assertFalse(actual);
     }
 }
