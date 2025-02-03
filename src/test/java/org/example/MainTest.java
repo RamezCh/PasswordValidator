@@ -63,7 +63,24 @@ class MainTest {
     }
 
     @Test
-    void hasUppercaseAndLowercase() {
+    void hasUppercaseAndLowercase_whenOnlyUppercase_returnFalse() {
+        String password = "ABC";
+        boolean actual = Main.hasUppercaseAndLowercase(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void hasUppercaseAndLowercase_whenOnlyLowercase_returnFalse() {
+        String password = "abc";
+        boolean actual = Main.hasUppercaseAndLowercase(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void hasUppercaseAndLowercase_whenUpperAndLowerCases_returnTrue() {
+        String password = "aBcDeFg";
+        boolean actual = Main.hasUppercaseAndLowercase(password);
+        assertTrue(actual);
     }
 
     @Test
