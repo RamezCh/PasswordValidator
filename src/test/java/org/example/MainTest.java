@@ -105,8 +105,22 @@ class MainTest {
     }
 
     @Test
-    void generateRandomSecurePassword_whenCheckedByIsPasswordCommon_returnAlwaysFalse() {
+    void generateRandomSecurePassword_shouldReturnSecurePassword_whenCheckedForCommonPassword() {
         String password = Main.generateRandomSecurePassword(8);
+        boolean isSecure = Main.isPasswordCommon(password);
+        assertFalse(isSecure);
+    }
+
+    @Test
+    void generateRandomSecurePassword_shouldReturnSecurePassword_whenMaxLengthIsNegative() {
+        String password = Main.generateRandomSecurePassword(-8);
+        boolean isSecure = Main.isPasswordCommon(password);
+        assertFalse(isSecure);
+    }
+
+    @Test
+    void generateRandomSecurePassword_shouldReturnSecurePassword_whenMaxLengthIsZero() {
+        String password = Main.generateRandomSecurePassword(0);
         boolean isSecure = Main.isPasswordCommon(password);
         assertFalse(isSecure);
     }
