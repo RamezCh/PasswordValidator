@@ -70,12 +70,12 @@ public class Main {
         return false;
     }
 
-    public static String generateRandomSecurePassword() {
+    public static String generateRandomSecurePassword(int maxPasswordLength) {
         String specialCharacters = "!@#$%^&*()_][;.,=-";
         String letters = "qwertyuiopasdfghjklzxcvbnm";
         String numbers = "1234567890";
 
-        int passwordLength = (int)(Math.random() * 92 + 8);
+        int passwordLength = (int)(Math.random() * maxPasswordLength + 8);
 
         char[] password = new char[passwordLength];
 

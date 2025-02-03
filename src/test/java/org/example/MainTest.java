@@ -106,7 +106,7 @@ class MainTest {
 
     @Test
     void generateRandomSecurePassword_whenCheckedByIsPasswordCommon_returnAlwaysFalse() {
-        String password = Main.generateRandomSecurePassword();
+        String password = Main.generateRandomSecurePassword(8);
         boolean isSecure = Main.isPasswordCommon(password);
         assertFalse(isSecure);
     }
