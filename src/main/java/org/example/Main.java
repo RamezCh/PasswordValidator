@@ -69,4 +69,33 @@ public class Main {
 
         return false;
     }
+
+    public static String generateRandomSecurePassword() {
+        String specialCharacters = "!@#$%^&*()_][;.,=-";
+        String letters = "qwertyuiopasdfghjklzxcvbnm";
+        String numbers = "1234567890";
+        String password = "";
+        int passwordLength = (int)(Math.random() * 30 + 8 );
+        for(int i = 0; i < passwordLength; i++) {
+            int randomLetter = (int)(Math.random() * letters.length());
+            boolean containNumber = Math.random() >= 0.5;
+            boolean containSpecialCharacter = Math.random() >= 0.5;
+            boolean isCapitalLetter = Math.random() >= 0.5;
+            if(isCapitalLetter) {
+                password += letters.toUpperCase().charAt(randomLetter);
+            } else {
+                password += letters.charAt(randomLetter);
+            }
+            if(containNumber) {
+                int randomNumber = (int)(Math.random() * numbers.length());
+                password += numbers.charAt(randomNumber);
+            }
+            if(containSpecialCharacter) {
+                int randomSpecialCharacters = (int) (Math.random() * specialCharacters.length());
+                password += specialCharacters.charAt(randomSpecialCharacters);
+            }
+
+        }
+        return password;
+    }
 }

@@ -103,4 +103,11 @@ class MainTest {
         boolean actual = Main.isPasswordCommon(password);
         assertFalse(actual);
     }
+
+    @Test
+    void generateRandomSecurePassword_whenCheckedByIsPasswordCommon_returnAlwaysFalse() {
+        String password = Main.generateRandomSecurePassword();
+        boolean isSecure = Main.isPasswordCommon(password);
+        assertFalse(isSecure);
+    }
 }
